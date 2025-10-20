@@ -1,0 +1,531 @@
+/* -----------------------------------------HEADER header ----------------------------------------- */
+header {
+  background-color: var(--md-purple);
+}
+/* ------------------DEALS deals ------------- */
+#deals {
+  position: relative;
+  overflow: hidden;
+  height: 2.5rem;
+  background: linear-gradient(to top, rgb(255, 126, 195), rgb(253, 107, 180));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+#deals ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  animation: slide 20s infinite;
+}
+
+#deals li {
+  height: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Keyframes for the vertical sliding effect */
+@keyframes slide {
+  0%,
+  20% {
+    transform: translateY(0);
+  }
+  33%,
+  53% {
+    transform: translateY(-2.5rem);
+  }
+  66%,
+  86% {
+    transform: translateY(-5rem);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+/* ------------------end deals------------- */
+/* ------------------TOP BAR top bar ------------- */
+.top-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 4vw;
+  height: 70px;
+  background-color: var(--md-purple);
+  /* box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05); */
+  position: relative;
+  z-index: 100;
+  transition: transform 0.7s ease;
+}
+
+/* ====== Hover Animation ====== */
+@keyframes jiggle {
+  0% {
+    transform: translateY(0);
+  }
+  25% {
+    transform: translateY(-6px);
+  }
+  50% {
+    transform: translateY(5px);
+  }
+  75% {
+    transform: translateY(-2px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.top-bar:hover {
+  animation: jiggle 0.6s ease;
+}
+
+/* ====== Logo (Left) ====== */
+.top-bar h1 {
+  color: var(--dk-purple);
+  margin: 0;
+}
+
+/* ====== Nav Links (Center) ====== */
+.nav-links {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 3vw;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: var(--v-dk-purple);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  transition: color 0.2s ease;
+}
+
+.nav-links a:hover {
+  color: var(--dk-purple);
+}
+
+/* ====== Dropdown Icons in Links ====== */
+.nav-links .dropdown {
+  margin-top: 0.2em;
+  width: 25px;
+}
+
+.dropdown path {
+  fill: var(--lt-purple);
+  stroke: var(--lt-purple);
+}
+
+/* ====== Icons (Right) ====== */
+.icons {
+  display: flex;
+  align-items: center;
+  gap: 1.3vw;
+}
+
+.icons svg {
+  width: 30px;
+  cursor: pointer;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.icons svg:hover {
+  transform: scale(1.1);
+  opacity: 0.8;
+}
+
+#cart svg {
+  width: 40px;
+  margin-left: -0.3vw;
+  margin-right: -0.3vw;
+}
+
+#account svg,
+#favorites path {
+  fill: var(--dk-purple);
+}
+
+#cart path,
+#favorites path {
+  stroke: var(--dk-purple);
+}
+
+#search svg path {
+  stroke: var(--dk-purple);
+}
+
+#favorites path {
+  stroke-width: 0.7px;
+}
+
+/* ------------------end top bar------------- */
+/* ------------------HERO hero ------------- */
+
+/* Hero layout */
+.hero {
+  position: relative;
+  width: 100vw;
+  height: 56vw;
+  overflow: hidden;
+}
+
+.hero img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  /* height: 100%; */
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+
+.hero img.active {
+  opacity: 1;
+}
+
+.arrow svg {
+  width: 80px;
+}
+
+.arrow.left {
+  left: 1rem;
+}
+
+.arrow.right {
+  right: 1rem;
+}
+
+.hero .arrow {
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.hero:hover .arrow,
+.arrow:hover {
+  opacity: 1 !important;
+}
+/* ------------------end hero ------------- */
+/* ------------------REVIEWS reviews ------------- */
+.reviews-section {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(to bottom, #cab0ff, #bc8dff);
+}
+
+/* .reviews-section:hover .arrow {
+  opacity: 1;
+} */
+
+.reviews-section .arrow {
+  bottom: -20%;
+}
+.reviews {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  padding: 37px 0;
+  padding-bottom: 86px;
+}
+
+.review {
+  position: relative;
+  min-width: 400px;
+  display: grid;
+  justify-items: center; /* centers children vertically if needed */
+}
+
+.speech-bubble {
+  position: relative;
+  padding: 20px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.star-rating {
+  font-size: 2rem;
+  padding-right: 0.65em;
+  text-align: center;
+}
+
+.review-content {
+  position: absolute;
+  display: grid;
+  top: 24%;
+  line-height: 1.2em;
+  left: 13%;
+  padding: 15px;
+  width: 280px;
+  height: 180px;
+}
+
+.review-content span {
+  /* margin-top: -20px; */
+  font-weight: 800;
+  font-size: 1.3rem;
+  padding-right: 1.2em;
+  text-align: center;
+}
+
+.review-content p {
+  margin-top: 6px;
+}
+
+.review img {
+  /* position: absolute;
+  bottom: 5px;
+  left: 5px; */
+  width: 90px;
+  height: 90px;
+  /* border-radius: 50%; */
+}
+
+.speech-bubble svg {
+  width: 400px;
+  height: 400px;
+  margin-right: -20px;
+  margin-left: -20px;
+  margin-bottom: -60px;
+}
+
+/* ------------------end reviews ------------- */
+/* ------------------PRODUCT SECTIONS product ------------- */
+
+/* Show arrows when hovering over the section */
+.best-sellers-section:hover .arrow,
+.seasonal-section:hover .arrow {
+  opacity: 1;
+}
+
+/* 
+.arrow.left {
+  left: 10px;
+}
+.arrow.right {
+  right: 10px;
+} */
+
+img.banner {
+  width: 100vw; /* spans full viewport width */
+  display: block; /* remove inline spacing */
+  object-fit: cover;
+}
+
+.products {
+  padding: 0.6em 0.6em;
+  background-color: #f4f3f7;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-gap: 0.65em;
+}
+
+.products img {
+  width: 100%;
+  transition: filter 0.3s ease;
+}
+
+.products img:hover {
+  filter: blur(1.5px) brightness(1.05);
+}
+
+.product-info {
+  padding: 1.2em;
+  padding-bottom: 1.5em;
+}
+
+.candle p {
+  font-weight: 750;
+  font-size: 2em;
+  margin-bottom: 0.4em;
+}
+.candle {
+  position: relative; /* parent for absolute cost */
+  overflow: hidden;
+  border-radius: 10px;
+  border: 1px solid rgb(194, 194, 203);
+}
+
+.candle::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  width: 0;
+  height: 0;
+  border-top: 0em solid transparent;
+  border-left: 0 solid transparent;
+  border-bottom: 0 solid transparent;
+  border-right: 0em solid transparent;
+  transition: all 0.3s ease;
+}
+
+.candle:hover::after {
+  height: 100px;
+  border-right: 10em solid transparent;
+}
+
+.best-sellers .candle:hover::after {
+  border-top: 7em solid var(--md-purple);
+}
+
+.seasonal .candle:hover::after {
+  border-top: 7em solid #fe2c5d;
+}
+
+.candle span {
+  line-height: 1.3em;
+  font-weight: 500;
+  font-size: 1.4rem;
+}
+
+/* 
+.candle p,
+.product-description {
+  width: 80%;
+  padding: 0 1em;
+} */
+
+.candle .cost {
+  z-index: 100;
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  color: #fff;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  font-weight: 800;
+  font-style: italic;
+  font-size: 2em;
+}
+
+.candle:hover .cost {
+  opacity: 1;
+}
+
+/* -------------- end product sections ------------- */
+/* -------------- FOOTER footer ------------- */
+footer {
+  display: flex;
+  justify-content: space-between;
+  background: linear-gradient(to bottom, #cab0ff, #bc8dff);
+  padding: 6em;
+  padding-left: 5em;
+}
+
+footer h3 {
+  font-size: 2.7rem;
+  font-weight: 750;
+  color: var(--dk-purple);
+  margin-bottom: 0.4em;
+}
+
+footer h3:hover {
+  animation: bounce 1.2s ease both;
+}
+
+@keyframes bounce {
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-9px);
+  }
+  60% {
+    transform: translateY(-5px);
+  }
+}
+footer h4,
+footer p {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 0.4em;
+}
+
+footer h4 {
+  margin-bottom: 0.5em;
+}
+
+footer h4 {
+  color: var(--dk-purple);
+}
+
+footer p {
+  color: white;
+  background: none;
+  -webkit-text-fill-color: white;
+}
+
+footer p:hover {
+  animation: shine 1.5s linear forwards;
+}
+
+@keyframes shine {
+  0% {
+    background: linear-gradient(to right, white 0%, #ffe066 50%, white 100%);
+    background-size: 200% auto;
+    background-position: 200% center;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  100% {
+    background: linear-gradient(to right, white 0%, #ffe066 50%, white 100%);
+    background-size: 200% auto;
+    background-position: -200% center;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+}
+
+footer a {
+  font-size: 1.4rem;
+  text-decoration: none;
+  font-weight: 500;
+  color: black;
+  transition: color 0.2s ease;
+}
+
+footer ul {
+  list-style: none;
+  line-height: 2.4em;
+}
+
+footer a:hover {
+  color: white;
+}
+.social-media-icon {
+  width: 68px;
+
+  transition: filter 0.2s ease;
+}
+
+.social-media-icons {
+  display: flex;
+  cursor: pointer;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 321px;
+  margin-top: 2.2em;
+}
+
+.social-media-icon:hover {
+  filter: invert(1);
+}
+
+/* -------------- end footer ------------- */
