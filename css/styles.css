@@ -62,6 +62,10 @@ header {
   transition: transform 0.7s ease;
 }
 
+#hamburger {
+  display: none;
+}
+
 /* ====== Hover Animation ====== */
 @keyframes jiggle {
   0% {
@@ -131,25 +135,32 @@ header {
   gap: 1.3vw;
 }
 
-.icons svg {
+.icons svg,
+#hamburger {
   width: 30px;
   cursor: pointer;
   transition: transform 0.2s ease, opacity 0.2s ease;
 }
 
-.icons svg:hover {
+#search svg {
+  margin-right: 0.3em;
+}
+
+.icons svg:hover,
+#hamburger:hover {
   transform: scale(1.1);
   opacity: 0.8;
 }
 
 #cart svg {
   width: 40px;
-  margin-left: -0.3vw;
-  margin-right: -0.3vw;
+  /* margin-left: -0.3vw;
+  margin-right: -0.3vw; */
 }
 
 #account svg,
-#favorites path {
+#favorites path,
+#hamburger path {
   fill: var(--dk-purple);
 }
 
@@ -173,22 +184,21 @@ header {
 .hero {
   position: relative;
   width: 100vw;
-  height: 56vw;
   overflow: hidden;
 }
 
-.hero img {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  /* height: 100%; */
-  object-fit: cover;
-  opacity: 0;
-  transition: opacity 1s ease-in-out;
+.hero picture {
+  display: none;
 }
 
-.hero img.active {
+.hero picture.active {
+  display: block;
+}
+
+.hero img {
+  width: 100%;
+  height: auto;
+  display: block;
   opacity: 1;
 }
 
@@ -235,6 +245,7 @@ header {
   scroll-behavior: smooth;
   padding: 37px 0;
   padding-bottom: 86px;
+  transition: padding 0.1s ease;
 }
 
 .review {
@@ -301,10 +312,10 @@ header {
 /* ------------------PRODUCT SECTIONS product ------------- */
 
 /* Show arrows when hovering over the section */
-.best-sellers-section:hover .arrow,
+/* .best-sellers-section:hover .arrow,
 .seasonal-section:hover .arrow {
   opacity: 1;
-}
+} */
 
 /* 
 .arrow.left {
@@ -324,7 +335,7 @@ img.banner {
   padding: 0.6em 0.6em;
   background-color: #f4f3f7;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
   grid-gap: 0.65em;
 }
 
@@ -529,3 +540,79 @@ footer a:hover {
 }
 
 /* -------------- end footer ------------- */
+/* -------------- mobile media query ------------- */
+@media (pointer: coarse) {
+  .reviews {
+    padding: 8em 0;
+    padding-bottom: 11em;
+  }
+}
+/* 
+.hero {
+  transition: height 0.1s ease;
+}
+
+@media (max-width: 657.1px) {
+  .hero img {
+    height: 100%;
+    width: 100%;
+  }
+  .hero {
+    height: 100vw;
+    transition: height 0.1s ease;
+  }
+} */
+
+/* -------------- tablet media query ------------- */
+
+.nav-links {
+  transition: opacity 0.1s ease, transform 0.1s ease, font-size 0.1s ease;
+}
+
+.nav-links a {
+  transition: font-size 0.1s ease;
+}
+
+@media (max-width: 1100px) {
+  .nav-links {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .nav-links a {
+    font-size: 0.4em;
+  }
+
+  #hamburger {
+    display: block;
+    width: 23px;
+    margin-right: 0.7em;
+  }
+
+  .top-bar {
+    justify-content: flex-start;
+  }
+
+  h1 {
+    flex-grow: 4;
+    padding-bottom: 0.06em;
+  }
+
+  .icons {
+    justify-self: flex-end;
+  }
+
+  .icons svg {
+    width: 28px;
+  }
+
+  #cart svg {
+    width: 37px;
+  }
+}
+
+@media (max-width: 1000px) {
+  .nav-links {
+    display: none;
+  }
+}

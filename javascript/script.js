@@ -1,5 +1,40 @@
+const heroImages = document.querySelectorAll(".hero picture");
+
+// SMOOTH BREAKING POINT HERO TRANSITION
+const hero = document.querySelector(".hero");
+
+function setHeroHeight() {
+  const activeImg = hero.querySelector(".active");
+  hero.style.height = activeImg.offsetHeight + "px";
+}
+
+window.addEventListener("load", setHeroHeight);
+window.addEventListener("resize", setHeroHeight);
+
+function showSlide(index) {
+  const currentImg = hero.querySelector(".active");
+  const nextImg = heroImages[index];
+
+  // Fade transition
+  currentImg.classList.remove("active");
+  nextImg.classList.add("active");
+
+  // Calculate next image height based on its natural ratio
+  const nextHeight =
+    nextImg.naturalHeight * (hero.offsetWidth / nextImg.naturalWidth);
+
+  // Animate hero height
+  hero.style.transition = "height 0.6s ease";
+  hero.style.height = nextHeight + "px";
+}
+
+// Initialize hero height on page load
+window.addEventListener("load", () => {
+  const initialImg = hero.querySelector(".active");
+  hero.style.height = initialImg.offsetHeight + "px";
+});
+
 // ===== HERO SLIDER =====
-const heroImages = document.querySelectorAll(".hero img");
 const leftArrow = document.querySelector(".arrow.left");
 const rightArrow = document.querySelector(".arrow.right");
 
@@ -46,6 +81,20 @@ rightArrow.addEventListener("click", () => {
 
 showSlide(current);
 startAutoSlide();
+
+// --- breaking point img change slide--
+// const mediaQuery = window.matchMedia("(max-width: 657px)");
+// let lastMatchState = mediaQuery.matches; // track previous state
+
+// function handleViewportChange(e) {
+//   // If the state (matches true/false) changed, switch slide
+//   if (e.matches !== lastMatchState) {
+//     nextSlide();
+//     lastMatchState = e.matches; // update the state
+//   }
+// }
+
+// mediaQuery.addEventListener("change", handleViewportChange);
 
 // ===== SPARKLE CURSOR FOR MULTIPLE SECTIONS =====
 const sparkle = document.getElementById("sparkle");
