@@ -1,7 +1,15 @@
+const hero = document.querySelector(".hero");
+
 const heroImages = document.querySelectorAll(".hero picture");
 
-// SMOOTH BREAKING POINT HERO TRANSITION
-const hero = document.querySelector(".hero");
+const heroBgColors = [
+  "#eccbff", // flowercore
+  "#ffddee", // candyland
+  "#f2f2f2", // thegrove
+  "#eeddff", // beachdays
+];
+
+// ======SMOOTH BREAKING POINT HERO TRANSITION======
 
 function setHeroHeight() {
   const activeImg = hero.querySelector(".active");
@@ -11,22 +19,23 @@ function setHeroHeight() {
 window.addEventListener("load", setHeroHeight);
 window.addEventListener("resize", setHeroHeight);
 
-function showSlide(index) {
-  const currentImg = hero.querySelector(".active");
-  const nextImg = heroImages[index];
+// function showSlide(index) {
+//   const currentImg = hero.querySelector(".active");
+//   const nextImg = heroImages[index];
 
-  // Fade transition
-  currentImg.classList.remove("active");
-  nextImg.classList.add("active");
+//   // Fade transition
+//   currentImg.classList.remove("active");
+//   nextImg.classList.add("active");
 
-  // Calculate next image height based on its natural ratio
-  const nextHeight =
-    nextImg.naturalHeight * (hero.offsetWidth / nextImg.naturalWidth);
+//   // Calculate next image height based on its natural ratio
+//   const nextHeight =
+//     nextImg.naturalHeight * (hero.offsetWidth / nextImg.naturalWidth);
 
-  // Animate hero height
-  hero.style.transition = "height 0.6s ease";
-  hero.style.height = nextHeight + "px";
-}
+//   // Animate hero height
+//   hero.style.transition = "height 0.6s ease";
+//   hero.style.height = nextHeight + "px";
+
+// }
 
 // Initialize hero height on page load
 window.addEventListener("load", () => {
@@ -45,6 +54,7 @@ let slideInterval;
 function showSlide(index) {
   heroImages.forEach((img) => img.classList.remove("active"));
   heroImages[index].classList.add("active");
+  hero.style.backgroundColor = heroBgColors[index];
 }
 
 // Next / Prev slide
@@ -83,18 +93,18 @@ showSlide(current);
 startAutoSlide();
 
 // --- breaking point img change slide--
-// const mediaQuery = window.matchMedia("(max-width: 657px)");
-// let lastMatchState = mediaQuery.matches; // track previous state
+const mediaQuery = window.matchMedia("(max-width: 657px)");
+let lastMatchState = mediaQuery.matches; // track previous state
 
-// function handleViewportChange(e) {
-//   // If the state (matches true/false) changed, switch slide
-//   if (e.matches !== lastMatchState) {
-//     nextSlide();
-//     lastMatchState = e.matches; // update the state
-//   }
-// }
+function handleViewportChange(e) {
+  // If the state (matches true/false) changed, switch slide
+  if (e.matches !== lastMatchState) {
+    nextSlide();
+    lastMatchState = e.matches; // update the state
+  }
+}
 
-// mediaQuery.addEventListener("change", handleViewportChange);
+mediaQuery.addEventListener("change", handleViewportChange);
 
 // ===== SPARKLE CURSOR FOR MULTIPLE SECTIONS =====
 const sparkle = document.getElementById("sparkle");

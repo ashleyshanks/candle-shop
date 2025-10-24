@@ -184,6 +184,8 @@ header {
 .hero {
   position: relative;
   width: 100vw;
+  max-height: calc(100vh - 110px);
+  background-color: var(--hero-bg);
   overflow: hidden;
 }
 
@@ -196,8 +198,11 @@ header {
 }
 
 .hero img {
-  width: 100%;
+  width: auto;
+  max-width: 100%;
+  margin: 0 auto;
   height: auto;
+  max-height: calc(100vh - 110px);
   display: block;
   opacity: 1;
 }

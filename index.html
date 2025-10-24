@@ -7,14 +7,16 @@
     <link rel="stylesheet" href="https://use.typekit.net/qbc8lxz.css" />
     <link rel="stylesheet" href="css/base.css" />
     <link rel="stylesheet" href="css/styles.css" />
-    <link rel="preload" as="image" href="images/heroflowercore.svg" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/color-thief/2.3.2/color-thief.umd.js"></script>
+
+    <!-- <link rel="preload" as="image" href="images/heroflowercore.svg" />
     <link rel="preload" as="image" href="images/heromobileflowercore.png" />
     <link rel="preload" as="image" href="images/herobeachdays.png" />
     <link rel="preload" as="image" href="images/heromobilebeachdays.png" />
     <link rel="preload" as="image" href="images/herocandyland.svg" />
     <link rel="preload" as="image" href="images/heromobilecandyland.png" />
     <link rel="preload" as="image" href="images/herothegrove.png" />
-    <link rel="preload" as="image" href="images/heromobilethegrove.png" />
+    <link rel="preload" as="image" href="images/heromobilethegrove.png" /> -->
   </head>
   <body>
     <header>
@@ -196,23 +198,19 @@
       <div class="hero" id="hero-section">
         <span id="sparkle">✨</span>
 
-        <picture>
+        <picture class="active">
           <source
             srcset="images/heromobileflowercore.png"
             media="(max-width: 660px)"
           />
-          <img
-            src="images/heroflowercore.svg"
-            class="active"
-            alt="Flowercore Collection"
-          />
+          <img src="images/heroflowercore.png" alt="Flowercore Collection" />
         </picture>
         <picture>
           <source
             srcset="images/heromobilecandyland.png"
             media="(max-width: 657px)"
           />
-          <img src="images/herocandyland.svg" alt="Candyland Collection" />
+          <img src="images/herocandyland.png" alt="Candyland Collection" />
         </picture>
         <picture>
           <source
