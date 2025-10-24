@@ -109,7 +109,11 @@ mediaQuery.addEventListener("change", handleViewportChange);
 // ===== SPARKLE CURSOR FOR MULTIPLE SECTIONS =====
 const sparkle = document.getElementById("sparkle");
 const heart = document.getElementById("heart-cursor");
-const hoverAreas = [document.querySelector("header")];
+const hoverAreas = [
+  document.querySelector("header"),
+  document.querySelector("div.nav-links"),
+];
+//fix me
 const heartAreas = [document.querySelector(".social-media-icons")];
 
 let mouseX = 0,
@@ -330,3 +334,19 @@ setInterval(() => {
     }, 500); // wait for transition to finish
   }
 }, 6000); // change item every 3s
+
+const hamburgerBtn = document.getElementById("hamburger");
+const topBar = document.querySelector("div.top-bar");
+const navLinks = document.querySelector("div.nav-links");
+const navOverlay = document.getElementById("nav-overlay");
+const navCloseBtn = document.querySelector(".nav-links .close-btn");
+
+hamburgerBtn.addEventListener("click", () => {
+  navLinks.classList.toggle("open");
+  topBar.classList.toggle("allow-animation");
+});
+
+navCloseBtn.addEventListener("click", () => {
+  navLinks.classList.remove("open");
+  topBar.classList.add("allow-animation");
+});

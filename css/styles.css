@@ -8,7 +8,7 @@ header {
   overflow: hidden;
   height: 2.5rem;
   background: linear-gradient(to top, rgb(255, 126, 195), rgb(253, 107, 180));
-  color: white; /* remove flex */
+  color: white;
 }
 
 #deals ul {
@@ -61,14 +61,23 @@ header {
   }
 }
 
-.top-bar:hover {
+.top-bar.allow-animation:hover {
   animation: jiggle 0.6s ease;
 }
 
 /* ====== Logo (Left) ====== */
-.top-bar h1 {
+h1 {
   color: var(--dk-purple);
   margin: 0;
+  flex-grow: 1;
+  padding-bottom: 0.06em;
+}
+
+h1:hover {
+  color: white;
+  background: none;
+  -webkit-text-fill-color: white;
+  animation: shine 3s linear forwards;
 }
 
 /* ====== Nav Links (Center) ====== */
@@ -87,10 +96,12 @@ header {
   align-items: center;
   gap: 4px;
   transition: color 0.2s ease;
+  transition: font-size 0.3s ease;
 }
 
 .nav-links a:hover {
-  color: var(--dk-purple);
+  color: var(--hover-top);
+  font-size: 1.8rem;
 }
 
 /* ====== Dropdown Icons in Links ====== */
@@ -114,8 +125,9 @@ header {
 .icons svg,
 #hamburger {
   width: 30px;
+  height: 30px;
   cursor: pointer;
-  transition: transform 0.2s ease, opacity 0.2s ease;
+  transition: transform 0.2s ease, color 0.2s ease;
 }
 
 #search svg {
@@ -124,12 +136,27 @@ header {
 
 .icons svg:hover,
 #hamburger:hover {
-  transform: scale(1.1);
-  opacity: 0.8;
+  transform: scale(1.2);
+  /* opacity: 0.8; */
+}
+#account:hover svg,
+#favorites:hover path,
+#hamburger:hover path {
+  fill: var(--hover-top);
+}
+
+#cart:hover path,
+#favorites:hover path {
+  stroke: var(--hover-top);
+}
+
+#search:hover svg path {
+  stroke: var(--hover-top);
 }
 
 #cart svg {
   width: 40px;
+  height: 40px;
   /* margin-left: -0.3vw;
   margin-right: -0.3vw; */
 }
@@ -160,10 +187,13 @@ header {
 .hero {
   position: relative;
   width: 100vw;
+  /* height: calc(100% - 1px); */
   max-height: calc(100vh - 110px);
   background-color: var(--hero-bg);
   overflow: hidden;
 }
+
+/* fix me line showing bottom some hero images */
 
 .hero picture {
   display: none;
@@ -200,10 +230,17 @@ header {
   transform: translateY(-50%);
 }
 
+/* fix me arrow not working */
+button.arrow {
+  padding: 20px;
+}
+
 .hero:hover .arrow,
 .arrow:hover {
   opacity: 1 !important;
+  pointer-events: auto;
 }
+
 /* ------------------end hero ------------- */
 /* ------------------REVIEWS reviews ------------- */
 .reviews-section {
@@ -555,13 +592,54 @@ footer a:hover {
 }
 
 @media (max-width: 1100px) {
+  .nav-links svg {
+    display: none;
+  }
+
+  .nav-links .small-only {
+    display: block;
+  }
+  .nav-links button.close-btn {
+    all: unset;
+    display: block;
+    font-size: 2.4rem;
+    color: #9a58f7;
+    position: absolute;
+    right: 0.3em;
+    cursor: pointer;
+    transition: color 0.2s ease;
+  }
+
+  .nav-links button.close-btn:hover {
+    color: var(--v-dk-purple);
+  }
+
   .nav-links {
-    opacity: 0;
-    pointer-events: none;
+    transform: none;
+    position: absolute;
+    font-size: 4.3em;
+    display: none;
+    /* display: block; */
+    padding: 0 0.4em;
+    width: 3em;
+    left: 0;
+    top: 100%;
+    z-index: 10000;
+    background-color: rgba(255, 255, 255, 0.869);
+    border-bottom-right-radius: 20px;
+  }
+
+  .nav-links.open {
+    display: block;
   }
 
   .nav-links a {
     font-size: 0.4em;
+    padding: 1em 0;
+  }
+
+  .nav-links a:not(.nav-links a:last-of-type) {
+    border-bottom: 2px solid var(--lt-purple);
   }
 
   #hamburger {
@@ -574,29 +652,26 @@ footer a:hover {
     justify-content: flex-start;
   }
 
-  h1 {
-    flex-grow: 4;
-    padding-bottom: 0.06em;
-  }
-
   .icons {
     justify-self: flex-end;
   }
 
   .icons svg {
     width: 28px;
+    height: 28px;
   }
 
   #cart svg {
     width: 37px;
+    height: 37px;
   }
 }
 
-@media (max-width: 1000px) {
+/* @media (max-width: 1000px) {
   .nav-links {
     display: none;
   }
-}
+} */
 
 /* mobile tablet footer */
 @media (max-width: 1100px) {
@@ -643,5 +718,49 @@ footer a:hover {
 
   .social-media-icon {
     width: 62px;
+  }
+}
+
+/* mobile nav */
+@media (max-width: 720px) {
+  .nav-links button.close-btn {
+    right: 1.7em;
+  }
+
+  .nav-links a:hover {
+    color: var(--md-purple);
+  }
+
+  .nav-links {
+    transform: none;
+    position: fixed;
+    display: none;
+    /* display: block; */
+    padding: 0 0.4em;
+    padding-bottom: 4em;
+    width: 100%;
+    margin: 0 auto;
+    left: 0;
+    top: 110px;
+    z-index: 10000;
+    background: linear-gradient(
+      to bottom,
+      white 0%,
+      /* solid white at top */ white 60%,
+      /* still white almost all the way down */ rgba(255, 255, 255, 0) 100%
+        /* fully transparent at bottom */
+    );
+  }
+
+  #nav-overlay {
+    position: fixed;
+    top: 110px;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(255, 255, 255, 0.464);
+    z-index: 10;
+
+    /* display: none; */
   }
 }

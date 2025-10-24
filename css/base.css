@@ -125,6 +125,17 @@ table {
   border-spacing: 0;
 }
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+li {
+  cursor: default;
+}
+
 /* -------------------------- COLORS colors -------------------------- */
 :root {
   --deals: rgb(255, 105, 215);
@@ -135,6 +146,7 @@ table {
   --dk-purple: #662db6;
   --v-dk-purple: #581bad;
   --hero-bg: #f4f0fa;
+  --hover-top: #ffffff;
 }
 
 /* -------------------------- FONTS fonts -------------------------- */
@@ -158,7 +170,8 @@ body {
 }
 
 /* -------------------------- HIDDEN -------------------------- */
-.hidden {
+.hidden,
+.nav-links .small-only {
   display: none;
 }
 
