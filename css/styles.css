@@ -68,9 +68,25 @@ header {
 /* ====== Logo (Left) ====== */
 h1 {
   color: var(--dk-purple);
+  position: relative;
   margin: 0;
-  flex-grow: 1;
+  width: max-content;
   padding-bottom: 0.06em;
+}
+
+div.h1 {
+  flex-grow: 1;
+}
+
+/* increase hover area  */
+h1::before {
+  content: "";
+  position: absolute;
+  top: -0.8em;
+  bottom: -0.8em;
+  left: 0;
+  right: -2em;
+  pointer-events: auto;
 }
 
 h1:hover {
