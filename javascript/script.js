@@ -115,8 +115,8 @@ const heartAreas = [document.querySelector(".social-media-icons")];
 let mouseX = 0,
   mouseY = 0;
 
-let heartX = 0;
-let heartY = document.body.scrollHeight - 150;
+let heartX = window.innerWidth / 2;
+let heartY = window.innerHeight * 0.98;
 
 let heartMouseX = 0,
   heartMouseY = heartY;
@@ -148,7 +148,7 @@ hoverAreas.forEach((area) => {
 heartAreas.forEach((area) => {
   area.addEventListener("mouseenter", () => {
     heartHovering = true;
-    heart.style.opacity = 1;
+    heart.style.opacity = 0;
   });
 
   area.addEventListener("mouseleave", () => {
@@ -157,8 +157,9 @@ heartAreas.forEach((area) => {
   });
 
   area.addEventListener("mousemove", (e) => {
-    heartMouseX = e.pageX;
-    heartMouseY = e.pageY;
+    heartMouseX = e.clientX;
+    heartMouseY = e.clientY;
+    heart.style.opacity = 1;
   });
 });
 
@@ -177,18 +178,28 @@ function animateSparkle() {
 
 animateSparkle();
 
+const overlay = document.getElementById("heart-cursor-overlay");
+
 function animateHeart() {
+  // ease
   heartX += (heartMouseX - heartX) * 0.1;
   heartY += (heartMouseY - heartY) * 0.1;
 
-  heart.style.transform = `translate(${heartX - heart.offsetWidth / 2}px, ${
-    heartY - heart.offsetHeight
-  }px)`;
+  // position relative to the VIEWPORT — overlay is fixed so client coords map directly
+  // use translate3d to avoid repaint issues and to keep transforms GPU-accelerated
+  const x = Math.round(heartX - heart.offsetWidth / 2);
+  const y = Math.round(heartY - heart.offsetHeight);
+
+  heart.style.transform = `translate3d(${x}px, ${y}px, 0)`;
 
   requestAnimationFrame(animateHeart);
 }
-
 animateHeart();
+
+// debug heart
+// setInterval(() => {
+//   console.log("heartX:", heartX, "heartY:", heartY);
+// }, 500);
 
 const reviews = document.querySelector(".reviews");
 const reviewLeftArrow = document.querySelector(".reviews-section .arrow.left");
@@ -298,3 +309,24 @@ reviewRightArrow.addEventListener("touchstart", (e) => {
 reviewRightArrow.addEventListener("touchend", stopScrolling);
 
 window.addEventListener("load", updateArrows);
+
+//deals
+
+const deals = document.querySelector("#deals ul");
+const itemHeight = deals.querySelector("li").offsetHeight;
+let offset = 0;
+
+setInterval(() => {
+  offset -= itemHeight; // move up one item
+  deals.style.transition = "transform 0.5s ease";
+  deals.style.transform = `translateY(${offset}px)`;
+
+  // reset to start when reaching the end
+  if (Math.abs(offset) >= (deals.children.length - 1) * itemHeight) {
+    setTimeout(() => {
+      deals.style.transition = "none";
+      offset = 0;
+      deals.style.transform = `translateY(${offset}px)`;
+    }, 500); // wait for transition to finish
+  }
+}, 6000); // change item every 3s

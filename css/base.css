@@ -191,14 +191,23 @@ body {
 }
 
 #heart-cursor {
-  position: absolute;
-  bottom: 92%;
-  right: 97%;
-  opacity: 0;
-  z-index: 100;
+  position: absolute; /* positioned relative to overlay */
+  top: 0;
+  left: 0;
   pointer-events: none;
   font-size: 1.5rem;
-  transition: opacity 0.3s ease;
+  will-change: transform, opacity;
+  transform: translate3d(0, 0, 0);
+  opacity: 0; /* visible only when hovering target */
+  transition: opacity 1s ease;
+}
+
+#heart-cursor-overlay {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 9999;
 }
 
 .arrow.reminder {

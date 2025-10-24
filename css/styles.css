@@ -8,17 +8,13 @@ header {
   overflow: hidden;
   height: 2.5rem;
   background: linear-gradient(to top, rgb(255, 126, 195), rgb(253, 107, 180));
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
+  color: white; /* remove flex */
 }
 
 #deals ul {
   list-style: none;
   padding: 0;
   margin: 0;
-  animation: slide 20s infinite;
 }
 
 #deals li {
@@ -27,26 +23,6 @@ header {
   align-items: center;
   justify-content: center;
 }
-
-/* Keyframes for the vertical sliding effect */
-@keyframes slide {
-  0%,
-  20% {
-    transform: translateY(0);
-  }
-  33%,
-  53% {
-    transform: translateY(-2.5rem);
-  }
-  66%,
-  86% {
-    transform: translateY(-5rem);
-  }
-  100% {
-    transform: translateY(0);
-  }
-}
-
 /* ------------------end deals------------- */
 /* ------------------TOP BAR top bar ------------- */
 .top-bar {
