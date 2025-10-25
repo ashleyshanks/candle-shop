@@ -13,7 +13,7 @@ const heroBgColors = [
 
 function setHeroHeight() {
   const activeImg = hero.querySelector(".active");
-  hero.style.height = activeImg.offsetHeight + "px";
+  hero.style.height = activeImg.offsetHeight - 1 + "px";
 }
 
 window.addEventListener("load", setHeroHeight);
