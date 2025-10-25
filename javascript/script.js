@@ -350,3 +350,11 @@ navCloseBtn.addEventListener("click", () => {
   navLinks.classList.remove("open");
   topBar.classList.add("allow-animation");
 });
+
+// prevent orphans
+document.addEventListener("DOMContentLoaded", () => {
+  document.querySelectorAll(".candle .product-description").forEach((span) => {
+    const txt = span.textContent.trim();
+    span.textContent = txt.replace(/\s+([^\s]+)$/, "\u00A0$1");
+  });
+});
